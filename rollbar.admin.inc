@@ -1,4 +1,8 @@
 <?php
+/**
+ * @file rollbar.admin.inc.
+ */
+
 
 /**
  * Admin form callback for rollbar settings
