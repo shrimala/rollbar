@@ -36,3 +36,5 @@ xmlrpc.php
 /scripts
 /themes
 /.project
+.buildpath
+.patch

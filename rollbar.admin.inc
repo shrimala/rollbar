@@ -21,7 +21,7 @@ function rollbar_admin_settings_form($form, &$form_state) {
     '#type' => 'textfield',
     '#required' => TRUE,
     '#title' => t('Environment'),
-    '#description' => t('Specify the environment variable to be sent to the
+    '#description' => t('Specify the environment name to be sent to the
         Rollbar API.'),
     '#default_value' => variable_get('rollbar_environment', 'production'),
   );
@@ -99,7 +99,7 @@ function rollbar_admin_settings_form($form, &$form_state) {
     '#title' => t('Send watchdog PHP errors and exceptions.'),
     '#enabled' => FALSE,
     '#description' => t('Watchdog PHP errors will most likely include duplicates
-        so should probably be tunred off, unless you\'ve opted out of
+        so should probably be turned off, unless you\'ve opted out of
         registering as an Error and Exception handler above.'),
     '#states' => array(
       'disabled' => array(
