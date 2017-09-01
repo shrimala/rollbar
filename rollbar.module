@@ -25,6 +25,15 @@ function rollbar_page_attachments_alter(array &$attachments) {
       'rollbar_js_url' => $config->get('rollbar_js_url'),
     ];
 
+    // Extract host white list, if set, and add it to configuration.
+    if ($hosts = $config->get('host_white_list')) {
+      $host_list = explode(',', trim($hosts));
+
+      if (!empty($host_list)) {
+        $settings['host_white_list'] = $host_list;
+      }
+    }
+
     // Allow alteration of the rollbar settings by other modules.
     \Drupal::moduleHandler()->alter('rollbar_settings', $settings);
 

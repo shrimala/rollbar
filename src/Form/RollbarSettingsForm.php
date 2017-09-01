@@ -69,6 +69,13 @@ class RollbarSettingsForm extends ConfigFormBase {
       '#description' => $this->t('The URL to the Rollbar js library'),
     );
 
+    $form['host_white_list'] = array(
+      '#type' => 'textfield',
+      '#title' => $this->t('Host white list'),
+      '#default_value' => $config->get('host_white_list'),
+      '#description' => $this->t('List of hosts for which rollbar reports errors'),
+    );
+
     return parent::buildForm($form, $form_state);
   }
 
@@ -83,6 +90,7 @@ class RollbarSettingsForm extends ConfigFormBase {
       ->set('capture_unhandled_rejections', $form_state->getValue('capture_unhandled_rejections'))
       ->set('environment', $form_state->getValue('environment'))
       ->set('rollbar_js_url', $form_state->getValue('rollbar_js_url'))
+      ->set('host_white_list', $form_state->getValue('host_white_list'))
       ->save();
 
     parent::submitForm($form, $form_state);

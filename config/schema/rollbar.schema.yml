@@ -20,3 +20,6 @@ rollbar.settings:
     rollbar_js_url:
       type: string
       label: 'URL to the rollbar library'
+    host_white_list:
+      type: string
+      label: 'Comma-separated host white list'
