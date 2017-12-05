@@ -62,13 +62,37 @@ class RollbarSettingsForm extends ConfigFormBase {
       '#description' => $this->t('The environment string to use when reporting errors'),
     );
 
+    $form['log_level'] = array(
+      '#type' => 'checkboxes',
+      '#title' => $this->t('Log level'),
+      '#default_value' => $config->get('log_level'),
+      '#description' => $this->t('Selected log types will be send to Rollbar'),
+      '#options' => [
+        'Emergency',
+        'Alert',
+        'Critical',
+        'Error',
+        'Warning',
+        'Notice',
+        'Info' ,
+        'Debug',
+      ]
+    );
+
+    $form['channels'] = array(
+      '#type' => 'textfield',
+      '#title' => $this->t('Filter channels'),
+      '#default_value' => $config->get('channels'),
+      '#description' => $this->t("Enter channels separated by ';' to prevent send them to rollbar"),
+    );
+
     $form['rollbar_js_url'] = array(
       '#type' => 'textfield',
       '#title' => $this->t('Rollbar JS URL'),
       '#default_value' => $config->get('rollbar_js_url'),
       '#description' => $this->t('The URL to the Rollbar js library'),
     );
-
+	
     $form['host_white_list'] = array(
       '#type' => 'textfield',
       '#title' => $this->t('Host white list'),
@@ -89,6 +113,8 @@ class RollbarSettingsForm extends ConfigFormBase {
       ->set('capture_uncaught', $form_state->getValue('capture_uncaught'))
       ->set('capture_unhandled_rejections', $form_state->getValue('capture_unhandled_rejections'))
       ->set('environment', $form_state->getValue('environment'))
+      ->set('log_level', $form_state->getValue('log_level'))
+      ->set('channels', $form_state->getValue('channels'))
       ->set('rollbar_js_url', $form_state->getValue('rollbar_js_url'))
       ->set('host_white_list', $form_state->getValue('host_white_list'))
       ->save();

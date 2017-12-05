@@ -17,6 +17,12 @@ rollbar.settings:
     environment:
       type: string
       label: 'Environment that will be reported to rollbar'
+    log_level:
+      type: sequence
+      label: 'Log levels that will be reported to rollbar'
+    channels:
+      type: string
+      label: 'Channels to filter'
     rollbar_js_url:
       type: string
       label: 'URL to the rollbar library'

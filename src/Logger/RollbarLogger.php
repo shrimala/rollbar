@@ -75,6 +75,13 @@ class RollbarLogger implements LoggerInterface {
     if (!$this->init()) {
       return;
     }
+    $enabled_log_levels = $this->config->get('log_level');
+    $log_level_condition = !in_array($level, $enabled_log_levels);
+    $omit_channel = array_map('trim', explode(";", $this->config->get('channels')));
+    $omit_channel_condition = isset($context['channel']) && in_array($context['channel'], $omit_channel);
+    if ($log_level_condition || $omit_channel_condition) {
+        return;
+    }
     $level_map = array(
       RfcLogLevel::EMERGENCY => RollbarLogLevel::critical(),
       RfcLogLevel::ALERT =>  RollbarLogLevel::critical(),
