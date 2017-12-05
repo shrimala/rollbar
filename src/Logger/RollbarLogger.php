@@ -96,7 +96,7 @@ class RollbarLogger implements LoggerInterface {
     // Populate the message placeholders and then replace them in the message.
     $message_placeholders = $this->parser->parseMessagePlaceholders($message, $context);
     $message = empty($message_placeholders) ? $message : strtr($message, $message_placeholders);
-    Rollbar::log($message, $context, $level_map[$level]);
+    Rollbar::log($level_map[$level], $message, $context);
   }
 
 }
