@@ -71,7 +71,7 @@ class RollbarLogger implements LoggerInterface {
   /**
    * {@inheritdoc}
    */
-  public function log($level, $message, array $context = array()) {
+  public function log($level, $message, array $context = []) {
     if (!$this->init()) {
       return;
     }
@@ -82,7 +82,7 @@ class RollbarLogger implements LoggerInterface {
     if ($log_level_condition || $omit_channel_condition) {
         return;
     }
-    $level_map = array(
+    $level_map = [
       RfcLogLevel::EMERGENCY => RollbarLogLevel::critical(),
       RfcLogLevel::ALERT =>  RollbarLogLevel::critical(),
       RfcLogLevel::CRITICAL =>  RollbarLogLevel::critical(),
@@ -91,7 +91,7 @@ class RollbarLogger implements LoggerInterface {
       RfcLogLevel::NOTICE =>  RollbarLogLevel::info(),
       RfcLogLevel::INFO =>  RollbarLogLevel::info(),
       RfcLogLevel::DEBUG =>  RollbarLogLevel::debug(),
-    );
+    ];
 
     // Populate the message placeholders and then replace them in the message.
     $message_placeholders = $this->parser->parseMessagePlaceholders($message, $context);

@@ -30,39 +30,39 @@ class RollbarSettingsForm extends ConfigFormBase {
   public function buildForm(array $form, FormStateInterface $form_state) {
     $config = $this->config('rollbar.settings');
 
-    $form['enabled'] = array(
+    $form['enabled'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Enabled'),
       '#default_value' => $config->get('enabled'),
-    );
+    ];
 
-    $form['access_token'] = array(
+    $form['access_token'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Access Token'),
       '#default_value' => $config->get('access_token'),
       '#required' => TRUE,
-    );
+    ];
 
-    $form['capture_uncaught'] = array(
+    $form['capture_uncaught'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Capture Uncaught'),
       '#default_value' => $config->get('capture_uncaught'),
-    );
+    ];
 
-    $form['capture_unhandled_rejections'] = array(
+    $form['capture_unhandled_rejections'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Capture uncaught rejections'),
       '#default_value' => $config->get('capture_unhandled_rejections'),
-    );
+    ];
 
-    $form['environment'] = array(
+    $form['environment'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Environment'),
       '#default_value' => $config->get('environment'),
       '#description' => $this->t('The environment string to use when reporting errors'),
-    );
+    ];
 
-    $form['log_level'] = array(
+    $form['log_level'] = [
       '#type' => 'checkboxes',
       '#title' => $this->t('Log level'),
       '#default_value' => $config->get('log_level'),
@@ -77,28 +77,28 @@ class RollbarSettingsForm extends ConfigFormBase {
         'Info' ,
         'Debug',
       ]
-    );
+    ];
 
-    $form['channels'] = array(
+    $form['channels'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Filter channels'),
       '#default_value' => $config->get('channels'),
       '#description' => $this->t("Enter channels separated by ';' to prevent send them to rollbar"),
-    );
+    ];
 
-    $form['rollbar_js_url'] = array(
+    $form['rollbar_js_url'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Rollbar JS URL'),
       '#default_value' => $config->get('rollbar_js_url'),
       '#description' => $this->t('The URL to the Rollbar js library'),
-    );
-	
-    $form['host_white_list'] = array(
+    ];
+
+    $form['host_white_list'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Host white list'),
       '#default_value' => $config->get('host_white_list'),
       '#description' => $this->t('List of hosts for which rollbar reports errors'),
-    );
+    ];
 
     return parent::buildForm($form, $form_state);
   }
